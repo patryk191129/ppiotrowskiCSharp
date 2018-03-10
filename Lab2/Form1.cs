@@ -15,11 +15,12 @@ namespace Lab2
         int _port;
         string _directory;
         HTTPServer _server;
+        string tmp;
 
 
         public Form1()
         {
-            _server = new HTTPServer();
+            _server = new HTTPServer(this);
             _port = 8000;
             _directory = "";
             InitializeComponent();
@@ -56,6 +57,26 @@ namespace Lab2
         private void StopServerButton_Click(object sender, EventArgs e)
         {
             _server.StopServer();
+        }
+
+        private void ServerLogButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void UpdateServerLog(string serverLogInfo)
+        {
+            MethodInvoker inv = delegate
+            {
+                ServerLogNormal.Text += "\n" + DateTime.Now.ToString("HH:mm:ss") + ": "+serverLogInfo;
+            };
+
+            this.Invoke(inv);
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
