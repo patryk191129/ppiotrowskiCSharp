@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO.Compression;
 
 namespace Lab3
 {
@@ -14,6 +15,7 @@ namespace Lab3
         string _projectDirectory;
         string _copyDirectory;
         string _slnFileName;
+        string _copyName = "Kopia";
 
         List<string> _projDirectories;
         List<string> _csprojList;
@@ -92,13 +94,16 @@ namespace Lab3
 
         private void CreateCopyDirectory()
         {
-            _copyDirectory = _projectDirectory + "//Kopia";
+            _copyDirectory = _projectDirectory + "//" + _copyName;
 
             if (!Directory.Exists(_copyDirectory))            
                 Directory.CreateDirectory(_copyDirectory);
 
             string srcFile = "";
             string destFile = "";
+
+
+            File.Copy(_fileLocation, _copyDirectory + "//" + _slnFileName, true);
 
                 for (int i=0;i< _projDirectories.Count;i++)
                 {
@@ -114,7 +119,7 @@ namespace Lab3
 
                     for (int j=0;j<filenames.Count;j++)
                     {
-                        srcFile = _projectDirectory + "//"+_projDirectories[i]+"//" + filenames[j];
+                        srcFile = _projectDirectory + "//"+_projDirectories[i]+ "//" + filenames[j];
                         destFile = _tmpDir + "//" + filenames[j];
 
                         try
@@ -139,6 +144,7 @@ namespace Lab3
 
 
         }
+
 
         private void UpdateLog(string logInfo)
         {

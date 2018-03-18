@@ -39,8 +39,8 @@
             this.StartServerButton = new System.Windows.Forms.Button();
             this.StopServerButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ServerLog = new System.Windows.Forms.Label();
             this.ServerLogNormal = new System.Windows.Forms.RichTextBox();
+            this.ServerLog = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -159,14 +159,6 @@
             this.groupBox2.Text = "Server log";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // ServerLog
-            // 
-            this.ServerLog.AutoSize = true;
-            this.ServerLog.Location = new System.Drawing.Point(6, 31);
-            this.ServerLog.Name = "ServerLog";
-            this.ServerLog.Size = new System.Drawing.Size(0, 20);
-            this.ServerLog.TabIndex = 0;
-            // 
             // ServerLogNormal
             // 
             this.ServerLogNormal.Location = new System.Drawing.Point(6, 31);
@@ -175,6 +167,15 @@
             this.ServerLogNormal.Size = new System.Drawing.Size(844, 685);
             this.ServerLogNormal.TabIndex = 1;
             this.ServerLogNormal.Text = "";
+            this.ServerLogNormal.TextChanged += new System.EventHandler(this.ServerLogNormal_TextChanged);
+            // 
+            // ServerLog
+            // 
+            this.ServerLog.AutoSize = true;
+            this.ServerLog.Location = new System.Drawing.Point(6, 31);
+            this.ServerLog.Name = "ServerLog";
+            this.ServerLog.Size = new System.Drawing.Size(0, 20);
+            this.ServerLog.TabIndex = 0;
             // 
             // Form1
             // 

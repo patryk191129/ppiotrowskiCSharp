@@ -78,5 +78,10 @@ namespace Lab2
         {
 
         }
+
+        private void ServerLogNormal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
