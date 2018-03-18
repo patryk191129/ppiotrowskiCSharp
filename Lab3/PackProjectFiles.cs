@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.IO.Compression;
+using Ionic.Zip;
 
 namespace Lab3
 {
@@ -36,6 +38,7 @@ namespace Lab3
 
             LoadSlnFile();
             CreateCopyDirectory();
+            CompressDirectory();
 
         }
 
@@ -94,7 +97,7 @@ namespace Lab3
 
         private void CreateCopyDirectory()
         {
-            _copyDirectory = _projectDirectory + "//" + _copyName;
+            _copyDirectory = Directory.GetParent(_projectDirectory) + "//" + _copyName;
 
             if (!Directory.Exists(_copyDirectory))            
                 Directory.CreateDirectory(_copyDirectory);
@@ -124,8 +127,8 @@ namespace Lab3
 
                         try
                         {
-                        if (!Directory.Exists(Path.GetDirectoryName(destFile)))
-                            Directory.CreateDirectory(Path.GetDirectoryName(destFile));    
+                            if (!Directory.Exists(Path.GetDirectoryName(destFile)))
+                                Directory.CreateDirectory(Path.GetDirectoryName(destFile));    
 
                             File.Copy(srcFile, destFile, true);
                             UpdateLog("Copied file to: " + destFile);
@@ -134,14 +137,25 @@ namespace Lab3
                         {
                             UpdateLog("Error, file " + srcFile + "does not exist");
                         }
+                    }             
+                }         
+        }
 
-                    }
-                
 
-                }
+        private void CompressDirectory()
+        {
 
-            
-
+            ZipFile zipFile = new ZipFile();
+            zipFile.AddDirectory(_copyDirectory);
+            try {
+                zipFile.Save(_copyDirectory + "\\kopia.zip");
+                UpdateLog("Compressed directory to file"+_copyDirectory+ "\\kopia.zip");
+            }
+            catch(IOException e)
+            {
+                UpdateLog("Error: Unable to Zip Directory");
+            }
+        
 
         }
 
@@ -151,7 +165,6 @@ namespace Lab3
             if (_form1 != null)
                 _form1.UpdateServerLog(logInfo);
         }
-
 
     }
 }
