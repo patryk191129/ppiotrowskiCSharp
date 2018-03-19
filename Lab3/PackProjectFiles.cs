@@ -24,7 +24,6 @@ namespace Lab3
         Form1 _form1;
 
 
-
         public PackProjectFiles(string _fileLocation, string _projectDirectory,Form1 _form1)
         {
             this._fileLocation = _fileLocation;

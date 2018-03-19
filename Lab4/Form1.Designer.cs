@@ -34,6 +34,8 @@
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,17 +48,17 @@
             this.button1 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DrawModeValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorR)).BeginInit();
             this.panel3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,6 +69,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1405, 981);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
@@ -97,6 +100,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(353, 556);
             this.panel2.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(117, 445);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Brush Size";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(23, 468);
+            this.trackBar1.Maximum = 40;
+            this.trackBar1.Minimum = 5;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(316, 69);
+            this.trackBar1.TabIndex = 8;
+            this.trackBar1.Value = 5;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label3
             // 
@@ -157,6 +181,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.DrawModeValue);
+            this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
@@ -173,6 +199,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Draw Point";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -182,6 +209,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Draw Line";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -191,6 +219,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Draw Rectangle";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // toolStrip1
             // 
@@ -213,26 +242,25 @@
             this.toolStripButton1.Text = "New Image";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // trackBar1
+            // label5
             // 
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(23, 468);
-            this.trackBar1.Maximum = 40;
-            this.trackBar1.Minimum = 5;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(316, 69);
-            this.trackBar1.TabIndex = 8;
-            this.trackBar1.Value = 5;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(24, 325);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(123, 26);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "DrawMode:";
             // 
-            // label4
+            // DrawModeValue
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(117, 445);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Brush Size";
+            this.DrawModeValue.AutoSize = true;
+            this.DrawModeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DrawModeValue.Location = new System.Drawing.Point(153, 325);
+            this.DrawModeValue.Name = "DrawModeValue";
+            this.DrawModeValue.Size = new System.Drawing.Size(173, 26);
+            this.DrawModeValue.TabIndex = 4;
+            this.DrawModeValue.Text = "DrawModeValue";
             // 
             // Form1
             // 
@@ -250,13 +278,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColorR)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,6 +311,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label DrawModeValue;
+        private System.Windows.Forms.Label label5;
     }
 }
 
