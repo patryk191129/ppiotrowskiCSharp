@@ -28,7 +28,7 @@ namespace Lab1
             List<string> numberElements = new List<string>();
             List<string> numberElements2 = new List<string>();
 
-            numberElements.Add(30);
+            //numberElements.Add(30);
             numberElements.Add(55.ToString());
 
             numberElements2.Add(192.ToString());

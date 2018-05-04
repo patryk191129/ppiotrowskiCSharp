@@ -54,6 +54,7 @@ namespace Lab2
                     sr = new StreamReader(_directory + filename + "index.html");
                 else               
                     sr = new StreamReader(_directory+filename);
+                   
 
                 UpdateServerLog(DateTime.Now.ToString("HH:mm:ss") + " Loaded page " + filename + ".");
                 return sr.ReadToEnd();
@@ -63,7 +64,7 @@ namespace Lab2
                 if(filename != "/favicon.ico")
                     UpdateServerLog(DateTime.Now.ToString("HH:mm:ss") + " Error 404: Failed to load page" + filename + ".");
 
-                return "<html><head></head><body>Error 404</body></html>";
+                    return "<html><head></head><body>Error 404</body></html>";
             }
         }
 
@@ -88,13 +89,20 @@ namespace Lab2
                         context.Response.ContentLength64 = Encoding.UTF8.GetByteCount(msg);
                         context.Response.StatusCode = (int)HttpStatusCode.OK;
 
-                        using (Stream stream = context.Response.OutputStream)
+
+                        /*if(request.RawUrl == "/wyjatek.html")                            
                         {
-                            using (StreamWriter writer = new StreamWriter(stream))
+                            msg = null;
+                        }*/
+
+                            using (Stream stream = context.Response.OutputStream)
                             {
-                                writer.Write(msg);
+                                using (StreamWriter writer = new StreamWriter(stream))
+                                {
+                                    writer.Write(msg);
+                                }
                             }
-                        }
+                        
                     }
                     catch
                     {

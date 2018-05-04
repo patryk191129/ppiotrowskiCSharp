@@ -67,9 +67,13 @@ namespace Lab6
 
                     FoundMatchesValue.Text = str.Count.ToString();
 
+                    int i = 1;
+
                     foreach (string surnameValue in str)
                     {
                         comboBox.Items.Add(surnameValue);
+                        i++;
+
                     }
 
                     comboBox.DroppedDown = true;
